@@ -7,16 +7,16 @@ public class Brick : MonoBehaviour
 {
     [SerializeField] private int health = 30;
     [SerializeField] private Text healthText;
-    private void Start() 
+    private void Start()
     {
         ChangeHealth();
     }
-    public void TakeDamage() 
+    private void TakeDamage()
     {
         health--;
         ChangeHealth();
-        
-        if(health == 0)
+
+        if (health == 0)
             Death();
     }
     private void ChangeHealth()
@@ -26,5 +26,10 @@ public class Brick : MonoBehaviour
     private void Death()
     {
         Destroy(gameObject);
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ball")
+            TakeDamage();
     }
 }
