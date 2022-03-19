@@ -5,11 +5,11 @@ using UnityEngine;
 public class BallSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;
-    private float angle;
-    private RaycastHit2D ray;
     [SerializeField] private float force;
-    private List<GameObject> ballList = new List<GameObject>();
     [SerializeField] private int balls;
+    public List<GameObject> ballList = new List<GameObject>();
+    private RaycastHit2D ray;
+    private float angle;
     private LineRenderer lr;
     private void Start()
     {
@@ -19,15 +19,21 @@ public class BallSpawner : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            ShowLine();
-            BallLoolAt();
+            if (IsShooting())
+            {
+                ShowLine();
+                BallLook();
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (angle > 10 && angle < 170)
+            if (IsShooting())
             {
-                StartCoroutine(ShootBall());
-                lr.enabled = false;
+                if (angle > 10 && angle < 170)
+                {
+                    StartCoroutine(ShootBall());
+                    lr.enabled = false;
+                }
             }
         }
     }
@@ -42,12 +48,21 @@ public class BallSpawner : MonoBehaviour
         Vector2 poss = Vector2.Reflect(new Vector3(ray.point.x, ray.point.y) - transform.position, ray.normal);
         lr.SetPosition(2, ray.point + poss.normalized * 2);
     }
-    private void BallLoolAt()
+    private void BallLook()
     {
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 dir = Input.mousePosition - pos;
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+    public void ClearList()
+    {
+        ballList.Clear();
+    }
+    private bool IsShooting() => ballList.Count == 0 ? true : false;
+    public void ShowSpawner()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
     private IEnumerator ShootBall()
     {
@@ -58,5 +73,6 @@ public class BallSpawner : MonoBehaviour
             ballList.Add(newBall);
             newBall.GetComponent<Rigidbody2D>().AddForce(transform.right * force);
         }
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
