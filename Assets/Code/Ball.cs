@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private Vector2 force = new Vector2(0,5);
+    [SerializeField] private Vector2 force = new Vector2(1,0.5f);
+    [SerializeField] private int speed = 100;
     private void Start()
     {
-
+        GetComponent<Rigidbody2D>().AddForce(force.normalized * speed);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +17,6 @@ public class Ball : MonoBehaviour
     }
     private void Update()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up);
+        
     }
 }
