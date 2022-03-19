@@ -11,7 +11,6 @@ public class Ball : MonoBehaviour
     }
     public void StopJumping()
     {
-        Debug.Log("asf");
         rig.simulated = false;
     }
 }

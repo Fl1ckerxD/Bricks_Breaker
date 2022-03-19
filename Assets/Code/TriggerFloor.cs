@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerFloor : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ball")
         {
