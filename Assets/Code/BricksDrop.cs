@@ -6,6 +6,6 @@ public class BricksDrop : MonoBehaviour
 {
     public void Drop()
     {
-        transform.position += new Vector3(0, -1, 0);
+        transform.position += new Vector3(0, -0.7f, 0);
     }
 }

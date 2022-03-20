@@ -7,10 +7,12 @@ public class Ball : MonoBehaviour
     public Vector2 newPosition;
     private Rigidbody2D rig;
     private BallSpawner ballSpawner;
+    private SpawnerBricks spawnerBricks;
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         ballSpawner = FindObjectOfType<BallSpawner>();
+        spawnerBricks = FindObjectOfType<SpawnerBricks>();
     }
     public void StopJumping()
     {
@@ -30,7 +32,17 @@ public class Ball : MonoBehaviour
         ballSpawner.ballList.Remove(gameObject);
         Destroy(gameObject);
         if (ballSpawner.ballList.Count == 0)
-            FindObjectOfType<BricksDrop>().Drop();
+        {
+            FindAndDrop();
+            spawnerBricks.SpawnBrick();
+        }
+
+    }
+    private void FindAndDrop()
+    {
+        var bricksDrops = FindObjectsOfType<BricksDrop>();
+        for (int i = 0; i < bricksDrops.Length; i++)
+            bricksDrops[i].Drop();
     }
     private Vector2 ballSpawnerPosition => ballSpawner.gameObject.transform.position;
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float force;
-    [SerializeField] private int balls;
+    [SerializeField] private Text textBalls;
+    public int balls;
     public List<GameObject> ballList = new List<GameObject>();
     private RaycastHit2D ray;
     private float angle;
@@ -14,6 +16,7 @@ public class BallSpawner : MonoBehaviour
     private void Start()
     {
         lr = GetComponent<LineRenderer>();
+        ChangeTextBalls();
     }
     private void Update()
     {
@@ -59,10 +62,15 @@ public class BallSpawner : MonoBehaviour
     {
         ballList.Clear();
     }
+    private void ChangeTextBalls()
+    {
+        textBalls.text = "x" + balls.ToString();
+    }
     private bool IsShooting() => ballList.Count == 0 ? true : false;
     public void ShowSpawner()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        ChangeTextBalls();
     }
     private IEnumerator ShootBall()
     {
