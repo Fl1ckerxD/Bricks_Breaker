@@ -8,8 +8,8 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float force;
     [SerializeField] private Text textBalls;
-    public int balls;
     public List<GameObject> ballList = new List<GameObject>();
+    public int balls;
     private RaycastHit2D ray;
     private float angle;
     private LineRenderer lr;
@@ -22,7 +22,7 @@ public class BallSpawner : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (IsShooting())
+            if (isAiming)
             {
                 ShowLine();
                 BallLook();
@@ -30,7 +30,7 @@ public class BallSpawner : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (IsShooting())
+            if (isAiming)
             {
                 if (angle > 10 && angle < 170)
                 {
@@ -58,15 +58,14 @@ public class BallSpawner : MonoBehaviour
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
-    public void ClearList()
+    public void StopShooting()
     {
-        ballList.Clear();
+        StopAllCoroutines();
     }
     private void ChangeTextBalls()
     {
         textBalls.text = "x" + balls.ToString();
     }
-    private bool IsShooting() => ballList.Count == 0 ? true : false;
     public void ShowSpawner()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -74,7 +73,7 @@ public class BallSpawner : MonoBehaviour
     }
     public void SpawnDefaultPosition()
     {
-        gameObject.transform.parent.transform.position = new Vector2(0,-3.13f);
+        gameObject.transform.parent.transform.position = new Vector2(0, -3.13f);
     }
     private IEnumerator ShootBall()
     {
@@ -87,4 +86,5 @@ public class BallSpawner : MonoBehaviour
         }
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
+    private bool isAiming => ballList.Count == 0 ? true : false;
 }

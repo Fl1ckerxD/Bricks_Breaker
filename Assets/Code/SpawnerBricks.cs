@@ -15,6 +15,10 @@ public class SpawnerBricks : MonoBehaviour
     private List<GameObject> bricksList = new List<GameObject>(NUMBER_BRICKS);
     private GameObject newBrick;
     private GameObject line;
+    private void Start()
+    {
+        SpawnBrick();
+    }
     public void SpawnBrick()
     {
         CreateLine();
