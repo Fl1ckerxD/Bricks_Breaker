@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rig;
     private BallSpawner ballSpawner;
     private SpawnerBricks spawnerBricks;
+    private int speed = 50;
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -21,10 +22,9 @@ public class Ball : MonoBehaviour
         if (ballSpawner.ballList[0] == gameObject)
         {
             newPosition = new Vector2(transform.position.x, ballSpawnerPosition.y);
-            ballSpawner.gameObject.transform.position = newPosition;
+            ballSpawner.gameObject.transform.parent.transform.position = newPosition;
             ballSpawner.ShowSpawner();
         }
-
         DeleteBall();
     }
     private void DeleteBall()
@@ -35,6 +35,7 @@ public class Ball : MonoBehaviour
         {
             FindAndDrop();
             spawnerBricks.SpawnBrick();
+            Brick.IncreaseHealth(1);
         }
 
     }

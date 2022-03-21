@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Brick : MonoBehaviour
 {
-    [SerializeField] private int health = 30;
+    [SerializeField] private int health;
+    private static int defaultHealth = 5;
     [SerializeField] private Text healthText;
     private void Start()
     {
+        health = defaultHealth;
         ChangeHealth();
     }
     private void TakeDamage()
@@ -26,6 +28,10 @@ public class Brick : MonoBehaviour
     private void Death()
     {
         Destroy(gameObject);
+    }
+    public static void IncreaseHealth(int value)
+    {
+        defaultHealth += value;
     }
     private void OnCollisionEnter2D(Collision2D other)
     {

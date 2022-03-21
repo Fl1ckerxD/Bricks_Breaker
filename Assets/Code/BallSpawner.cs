@@ -72,6 +72,10 @@ public class BallSpawner : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         ChangeTextBalls();
     }
+    public void SpawnDefaultPosition()
+    {
+        gameObject.transform.parent.transform.position = new Vector2(0,-3.13f);
+    }
     private IEnumerator ShootBall()
     {
         for (int i = 0; i < balls; i++)
