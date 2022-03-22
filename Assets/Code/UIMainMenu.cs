@@ -12,6 +12,7 @@ public class UIMainMenu : MonoBehaviour
     private void Start()
     {
         volume.value = PlayerPrefs.GetFloat("SaveVolume", 0);
+        Time.timeScale = 1f;
     }
     public void MusicVolume(float volume)
     {

@@ -12,9 +12,14 @@ public class BricksDrop : MonoBehaviour
     {
         transform.position += new Vector3(0, -0.7f, 0);
         if (transform.position.y < -5.58f && hasBricks)
+        {
             Debug.Log("Danger");
-        if (transform.position.y < -6.28f && hasBricks)
-            Debug.Log("Fail");
+
+        }
+        if (transform.position.y < -6.8f && hasBricks)
+        {
+            FindObjectOfType<UIGameScene>().ShowFailPanel();
+        }
     }
     private void EmptyLine()
     {

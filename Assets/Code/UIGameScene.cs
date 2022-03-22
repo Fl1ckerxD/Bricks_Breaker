@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIGameScene : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+     [SerializeField] private GameObject FailPanel;
     private void Start() 
     {
         Time.timeScale = 1f;
@@ -34,5 +35,10 @@ public class UIGameScene : MonoBehaviour
     public void HomeButton()
     {
         SceneManager.LoadScene(0);
+    }
+    public void ShowFailPanel()
+    {
+        FailPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
