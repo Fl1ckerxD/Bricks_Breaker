@@ -7,11 +7,10 @@ public class SpawnerBricks : MonoBehaviour
     [SerializeField] private GameObject brick;
     [SerializeField] private GameObject ballIncreaser;
     private const int NUMBER_BRICKS = 8;
-    private Vector2 defaultSpawn = new Vector2(0, 4);
-    private Vector2[] spawnPoints = {new Vector2(-2.45f,3), new Vector2(-1.75f,3),
-                                    new Vector2(-1.05f,3), new Vector2(-0.35f,3),
-                                    new Vector2(0.35f,3), new Vector2(1.05f,3),
-                                    new Vector2(1.75f,3), new Vector2(2.45f,3)};
+    private Vector2[] spawnPoints = { new Vector2(-2.45f, 3.7f), new Vector2(-1.75f, 3.7f),
+                                    new Vector2(-1.05f, 3.7f), new Vector2(-0.35f, 3.7f),
+                                    new Vector2(0.35f, 3.7f), new Vector2(1.05f, 3.7f),
+                                    new Vector2(1.75f, 3.7f), new Vector2(2.45f, 3.7f) };
     private List<GameObject> bricksList = new List<GameObject>(NUMBER_BRICKS);
     private GameObject newBrick;
     private GameObject line;

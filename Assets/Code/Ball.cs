@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
     private SpawnerBricks spawnerBricks;
     private int _speed = 50;
     private static Vector2 _newPosition;
-    private Vector2 _defaultPosition = new Vector2(0, -3.13f);
+    private Vector2 _defaultPosition = new Vector2(0, -3.48f);
     private static bool _isFirstBall = true;
     private void Start()
     {
