@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Brick : MonoBehaviour
 {
     [SerializeField] private int health;
-    private static int defaultHealth = 5;
+    private static int defaultHealth = 1;
     [SerializeField] private Text healthText;
     private void Start()
     {
