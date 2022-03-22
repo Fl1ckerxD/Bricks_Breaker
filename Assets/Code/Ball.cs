@@ -19,12 +19,14 @@ public class Ball : MonoBehaviour
     }
     public void StopJumping()
     {
+        rig.simulated = false;
         if (_isFirstBall)
         {
             _newPosition = new Vector2(transform.position.x, ballSpawnerPosition.y);
             _isFirstBall = false;
         }
         MoveBallTo(_newPosition);
+        DeleteBall();
     }
     private void DeleteBall()
     {
@@ -46,8 +48,6 @@ public class Ball : MonoBehaviour
     }
     private void MoveBallTo(Vector2 target)
     {
-        rig.simulated = false;
-        DeleteBall();
         transform.position = Vector2.MoveTowards(transform.position, target, Time.fixedTime * _speed);
     }
     private void FindAndDrop()

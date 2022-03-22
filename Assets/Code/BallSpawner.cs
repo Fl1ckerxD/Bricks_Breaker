@@ -20,17 +20,15 @@ public class BallSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (isAiming)
         {
-            if (isAiming)
+            if (Input.GetMouseButton(0))
             {
                 ShowLine();
                 BallLook();
             }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (isAiming)
+            
+            if (Input.GetMouseButtonUp(0))
             {
                 if (angle > 10 && angle < 170)
                 {

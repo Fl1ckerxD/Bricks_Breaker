@@ -11,13 +11,6 @@ public class UIGameScene : MonoBehaviour
     {
         Time.timeScale = 1f;
     }
-    public void ReturnBalls()
-    {
-        FindObjectOfType<BallSpawner>().StopShooting();
-        var balls = FindObjectsOfType<Ball>();
-        for (int i = 0; i < balls.Length; i++)
-            balls[i].MoveBallTo();
-    }
     public void Pause()
     {
         Time.timeScale = 0f;
