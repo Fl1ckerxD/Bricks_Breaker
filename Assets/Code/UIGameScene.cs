@@ -10,10 +10,11 @@ public class UIGameScene : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider volume;
     [SerializeField] private GameObject pauseMenu;
-     [SerializeField] private GameObject FailPanel;
+    [SerializeField] private GameObject FailPanel;
     private void Start() 
     {
         Time.timeScale = 1f;
+        volume.value = PlayerPrefs.GetFloat("SaveVolume", 0);
     }
     public void Pause()
     {

@@ -44,9 +44,9 @@ public class SpawnerBricks : MonoBehaviour
             int change = Random.Range(0, 101);
             if (change < 51)
                 bricksList.Add(brick);
-            else if (change > 50 && change < 76)
+            else if (change > 50 && change < 86)
                 bricksList.Add(null);
-            else if (change > 75 && change < 101)
+            else if (change > 85 && change < 101)
                 bricksList.Add(ballIncreaser);
         }
     }
