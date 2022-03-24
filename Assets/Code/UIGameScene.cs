@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -11,7 +9,7 @@ public class UIGameScene : MonoBehaviour
     [SerializeField] private Slider volume;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject FailPanel;
-    private void Start() 
+    private void Start()
     {
         Time.timeScale = 1f;
         volume.value = PlayerPrefs.GetFloat("SaveVolume", 0);
